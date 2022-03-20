@@ -1,6 +1,11 @@
-
+import {useState} from "react";
 
 export default function Home() {
+    const [keyword, setKeyword] = useState(null);
+    const [sort, setSort] = useState(null);
+    const [bedrooms, setBedrooms] = useState(null);
+    const [response, setResponse] = useState(null);
+
   return (
       <div className="flex flex-col md:px-12 px-0 relative bg-background font-poppins items-center min-h-screen">
           <h1 className="text-6xl text-primary font-bold mt-20">
@@ -12,7 +17,7 @@ export default function Home() {
           <form
           className="sm:mx-auto mt-20 md:max-w-4xl justify-center flex flex-col sm:w-full sm:flex"
           onSubmit={event => {
-              event.preventDefault();
+              event.preventDefault(); // Allow enter key to submit the form
               event.stopPropagation();
           }}
           >
@@ -20,6 +25,11 @@ export default function Home() {
               type="text"
               className="flex w-full rounded-lg px-5 py-3 text-base text-background font-semibold focus:outline-none focus:ring-2 focus:ring-active"
               placeholder="Enter the location for properties eg: Kansas City"
+              onChange={event => {
+                  // Store value in state
+                  setKeyword(event.target.value);
+                  setResponse(null);
+              }}
               />
 
               <div className="mt-5 flex sm:flex-row flex-col justify-start">
@@ -27,7 +37,10 @@ export default function Home() {
                       <label className="block text-primary text-sm">
                           Sort by
                       </label>
-                      <select className="mt-1 flex w-full rounded-lg px-5 py-3 text-base text-background font-bold focus:outline-none">
+                      <select
+                          className="mt-1 flex w-full rounded-lg px-5 py-3 text-base text-background font-bold focus:outline-none"
+                          onChange={event => setSort(event.target.value)} //Store value in state
+                      >
                           {[
                               'relevance',
                               'newest',
@@ -50,6 +63,7 @@ export default function Home() {
                       type="number"
                       className="mt-1 w-full rounded-lg px-5 py-3 text-base text-background font-bold focus:outline-none"
                       placeholder="1"
+                      onChange={event => setBedrooms(event.target.value)} //Store value in state
                       ></input>
                   </div>
               </div>
