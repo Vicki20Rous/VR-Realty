@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import 'tailwindcss/tailwind.css'
+import 'tailwindcss/tailwind.css';
 
     function MyApp({ Component, pageProps }) {
       return (
@@ -13,9 +13,8 @@ import 'tailwindcss/tailwind.css'
                   />
               </Head>
               <Component {...pageProps} />
-
           </>
-      )
+      );
 
     }
 

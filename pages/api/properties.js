@@ -6,7 +6,7 @@ export default async function handler(req, res) {
         url: "https://realty-in-us.p.rapidapi.com/properties/list-for-sale",
         params: {
             state_code: req.query.state_code,
-            city: req.query.city
+            city: req.query.city,
             offset: "0",
             limit: "20",
             sort: req.query.sort,
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         },
         headers: {
             "x-rapidapi-host": "realty-in-us.p.rapidapi.com",
-            "x-rapidapi-key": NEXT_PUBLIC_RAPIDAPI_KEY,
+            "x-rapidapi-key": "22539d0047mshaba23ae76c1a0c3p1d7388jsn5281cea1a33d",
         },
     };
 

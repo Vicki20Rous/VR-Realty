@@ -6,9 +6,11 @@ export default function Home() {
     const [sort, setSort] = useState(null);
     const [bedrooms, setBedrooms] = useState(null);
     const [response, setResponse] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const getProperties = async () => {
         try {
+            setLoading(true);
             // Request the location endpoint to get location based on input keyword
             const location = await axios.get('api/location/', {
                 params: {keyword}
@@ -19,9 +21,10 @@ export default function Home() {
                 params: {city, state_code, sort, bedrooms} // Set parameters
             });
             const {data} = res;
+            setLoading(false);
             setResponse(data.listings); // Set response
         } catch (error) {
-            console.error(error);
+            setLoading(false);
         }
     };
 
@@ -36,6 +39,7 @@ export default function Home() {
           <form
           className="sm:mx-auto mt-20 md:max-w-4xl justify-center flex flex-col sm:w-full sm:flex"
           onSubmit={event => {
+              getProperties();
               event.preventDefault(); // Allow enter key to submit the form
               event.stopPropagation();
           }}
@@ -45,7 +49,6 @@ export default function Home() {
               className="flex w-full rounded-lg px-5 py-3 text-base text-background font-semibold focus:outline-none focus:ring-2 focus:ring-active"
               placeholder="Enter the location for properties eg: Kansas City"
               onChange={event => {
-                  getProperties();
                   setKeyword(event.target.value);
                   setResponse(null);
               }}
@@ -91,9 +94,8 @@ export default function Home() {
               className="mt-5 w-full rounded-lg px-5 py-3 bg-active text-base text-primary font-bold hover:text-active hover:bg-primary transition-colors duration-300 sm:px-10"
               type="submit"
               >
-                Search
+                  {loading ? <>Loading..</> : <>Search</>}
               </button>
-
           </form>
           {response && (
               <div className="mt-10">

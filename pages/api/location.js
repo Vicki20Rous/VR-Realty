@@ -7,7 +7,7 @@ export default async function handler(req, res) {
         params: { input: req.query.keyword },
         headers: {
             "x-rapidapi-host": "realty-in-us.p.rapidapi.com",
-            "x-rapidapi-key": NEXT_PUBLIC_RAPIDAPI_KEY,
+            "x-rapidapi-key":"22539d0047mshaba23ae76c1a0c3p1d7388jsn5281cea1a33d",
         },
     };
 
