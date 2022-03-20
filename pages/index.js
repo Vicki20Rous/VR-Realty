@@ -45,7 +45,7 @@ export default function Home() {
               className="flex w-full rounded-lg px-5 py-3 text-base text-background font-semibold focus:outline-none focus:ring-2 focus:ring-active"
               placeholder="Enter the location for properties eg: Kansas City"
               onChange={event => {
-                  // Store value in state
+                  getProperties();
                   setKeyword(event.target.value);
                   setResponse(null);
               }}
@@ -95,6 +95,50 @@ export default function Home() {
               </button>
 
           </form>
+          {response && (
+              <div className="mt-10">
+                  <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                      {response.map(property => (
+                          <div key={property.property_id} className="pt-6">
+                              <div className="flow-root bg-light rounded-lg px-4 pb-8">
+                                  <div className="mt-6">
+                                      <div className="flex items-center justify-center">
+                                          <span className="p-2">
+                                              <img
+                                              src={property.photo}
+                                              className="w-full h-full rounded-lg"
+                                              />
+                                          </span>
+                                      </div>
+                                      <div className="text-center justify-center items-center">
+                                          <h3 className="mt-4 text-lg font-bold w-full break-words overflow-x-auto text-active tracking-tight">
+                                              {property.short_price}{' '}
+                                              {property.prop_type}
+                                          </h3>
+                                          <span className="mt-2 text-sm font-bold text-primary block">
+                                              {property.address}
+                                          </span>
+                                          <a
+                                          className="mt-4 text-sm text-active block"
+                                          href={property.rdc_web_url}
+                                          >
+                                              Details
+
+                                          </a>
+
+                                      </div>
+
+                                  </div>
+
+                              </div>
+
+                          </div>
+                      ))}
+
+                  </div>
+
+              </div>
+          )}
       </div>
   );
 }
