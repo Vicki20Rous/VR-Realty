@@ -8,7 +8,7 @@ export default async function handler(req, res) {
             state_code: req.query.state_code,
             city: req.query.city,
             offset: "0",
-            limit: "20",
+            limit: "50",
             sort: req.query.sort,
             beds_min: req.query.beds,
         },

@@ -31,14 +31,14 @@ export default function Home() {
   return (
       <div className="flex flex-col md:px-12 px-0 relative bg-background font-poppins items-center min-h-screen">
           <h1 className="text-6xl text-primary font-bold mt-20">
-            V.R. Real Estate <span className="text-active">App</span>
+            V.R. Real Estate Listing <span className="text-active">App</span>
           </h1>
           <h2 className="text-active text 2xl mt-6">
               Find Your Dream Home for sale anywhere in USA!!
           </h2>
           <form
           className="sm:mx-auto mt-20 md:max-w-4xl justify-center flex flex-col sm:w-full sm:flex"
-          onSubmit={event => {
+          onSubmit={(event) => {
               getProperties();
               event.preventDefault(); // Allow enter key to submit the form
               event.stopPropagation();
@@ -48,7 +48,7 @@ export default function Home() {
               type="text"
               className="flex w-full rounded-lg px-5 py-3 text-base text-background font-semibold focus:outline-none focus:ring-2 focus:ring-active"
               placeholder="Enter the location for properties eg: Kansas City"
-              onChange={event => {
+              onChange={(event) => {
                   setKeyword(event.target.value);
                   setResponse(null);
               }}
@@ -61,7 +61,7 @@ export default function Home() {
                       </label>
                       <select
                           className="mt-1 flex w-full rounded-lg px-5 py-3 text-base text-background font-bold focus:outline-none"
-                          onChange={event => setSort(event.target.value)} //Store value in state
+                          onChange={(event) => setSort(event.target.value)} //Store value in state
                       >
                           {[
                               'relevance',
@@ -85,7 +85,7 @@ export default function Home() {
                       type="number"
                       className="mt-1 w-full rounded-lg px-5 py-3 text-base text-background font-bold focus:outline-none"
                       placeholder="1"
-                      onChange={event => setBedrooms(event.target.value)} //Store value in state
+                      onChange={(event) => setBedrooms(event.target.value)} //Store value in state
                       ></input>
                   </div>
               </div>
