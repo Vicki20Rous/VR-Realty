@@ -1,10 +1,29 @@
-import {useState} from "react";
+import {useState} from 'react';
+import axios from 'axios';
 
 export default function Home() {
     const [keyword, setKeyword] = useState(null);
     const [sort, setSort] = useState(null);
     const [bedrooms, setBedrooms] = useState(null);
     const [response, setResponse] = useState(null);
+
+    const getProperties = async () => {
+        try {
+            // Request the location endpoint to get location based on input keyword
+            const location = await axios.get('api/location/', {
+                params: {keyword}
+            });
+            const {city, state_code} = location.data.autocomplete[0]; // Extract city and state from the response
+            // Request the properties endpoint to get available properties
+            const res = await axios.get('api/properties/', {
+                params: {city, state_code, sort, bedrooms} // Set parameters
+            });
+            const {data} = res;
+            setResponse(data.listings); // Set response
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
   return (
       <div className="flex flex-col md:px-12 px-0 relative bg-background font-poppins items-center min-h-screen">
