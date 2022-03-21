@@ -12,13 +12,13 @@ export default function Home() {
         try {
             setLoading(true);
             // Request the location endpoint to get location based on input keyword
-            const location = await axios.get('api/location/', {
-                params: {keyword}
+            const location = await axios.get("api/location/", {
+                params: { keyword },
             });
             const {city, state_code} = location.data.autocomplete[0]; // Extract city and state from the response
             // Request the properties endpoint to get available properties
             const res = await axios.get('api/properties/', {
-                params: {city, state_code, sort, bedrooms} // Set parameters
+                params: {city, state_code, sort, bedrooms }, // Set parameters
             });
             const {data} = res;
             setLoading(false);
